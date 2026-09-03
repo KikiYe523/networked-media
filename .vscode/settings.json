@@ -55,7 +55,7 @@
     "chat.agent.codeBlockProgress": false,
     "chat.agent.thinking.generateTitles": false,
     "chat.agent.thinking.terminalTools": false,
-    "chat.disableAIFeatures": true,
+    "chat.disableAIFeatures": false,
     "chat.editor.localAgent.enabled": false,
     "chat.extensionUnification.enabled": false,
     "chat.viewSessions.enabled": false,
