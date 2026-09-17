@@ -1,0 +1,94 @@
+@font-face {
+  font-family: Vegan;
+  src: url("fonts/Vegan TM Regular.otf");
+}
+
+@font-face {
+  font-family: Bowies;
+  src: url("fonts/Bowies.otf");
+}
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: Bowies;
+  font-size: 25px;
+}
+
+h1 {
+  font-family: Vegan;
+  font-size: 64px;
+  font-weight: normal;
+}
+
+h2 {
+  font-family: Vegan;
+  font-size: 40px;
+  font-weight: normal;
+}
+
+button {
+  font-family: Bowies;
+  font-size: 18px;
+}
+
+body.page1 {
+  background-image: url("images/background1.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+body.pages234 {
+  background-image: url("images/background2.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.page-image {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+.content {
+  text-align: center;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+.three-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.two-columns img,
+.three-columns img {
+  width: 100%;
+  display: block;
+}
+.choice-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  border: 2px solid black;
+  margin: 10px;
+}
+
+.hand-cursor {
+  cursor: url("images/hand.png") 8 2, pointer;
+}
