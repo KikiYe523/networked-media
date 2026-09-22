@@ -88,7 +88,3 @@ body.pages234 {
   border: 2px solid black;
   margin: 10px;
 }
-
-.hand-cursor {
-  cursor: url("images/hand.png") 8 2, pointer;
-}
