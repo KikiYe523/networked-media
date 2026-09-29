@@ -1,0 +1,25 @@
+/* Q: What is p when defining a rule in CSS? */
+/* A:  element selevtor that selets all paragraph elements, this is what is going to have the styles applied*/
+p {
+  /* Q: What is the property that manipulates the horizontal size of the block? Write that property and give it a value of 60%*/
+  width: 60%
+
+  /* Q: What are the other units of measurement we use in CSS? */
+  /* A: px, em, rem, cm, mm, in, %*/
+}
+
+/* To be completed as a class together: */
+/* Select "blue" class */
+.blue{
+  background-color:blue;
+}
+
+/* Select "main" id */
+#main{
+  border: 2px solid red;
+}
+/* can have a lot of id but can only be used one time on the website. */
+
+
+/* HTML linkes style.css and main.js
+which style to apply to which location,  */
