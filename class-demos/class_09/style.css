@@ -1,0 +1,15 @@
+/* add wdith and height */
+body {
+    min-height: 100vh;
+    width: 100%;
+    /* remove margins for overflow */
+    margin: 0;
+}
+
+#text {
+    width: 500px;
+    height: 500px;
+    background-color: pink;
+    margin-top: 40px;
+    margin-left: 100px;
+}
