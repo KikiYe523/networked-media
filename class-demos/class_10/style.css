@@ -1,0 +1,42 @@
+/* multiple selector using comma */
+html,body{
+    /* vw = viewpoint width */
+    width: 100vw;
+    /* vh = viewport height */
+    /* overflow: hidden */
+    /* if i want to see the whole border */
+    height: 100vh;
+    padding: 10px;
+    margin: 0;
+    /* change calculation to use border-box to include margin, border, and padding */
+    box-sizing: border-box;
+
+
+/* seperate selector for just body */
+}
+body{
+    padding: 10px;
+    border: 10px solid red; 
+}
+ 
+.parent{
+    background-color:orange;
+    position: relative;
+}
+
+.child {
+    background-color: yellow;
+    position: absolute;
+    /* kind of like margin, position from the top of the relative element */
+    top:0;
+    right: 33%;
+    z-index:-100;
+}
+
+.child2 {
+    background-color: red;
+    position: absolute;
+    top: 0;
+    right: 66%;
+    z-index: -200;
+}
