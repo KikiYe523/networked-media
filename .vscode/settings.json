@@ -131,5 +131,6 @@
     "chat.detectParticipant.enabled": false,
     "chat.implicitContext.suggestedContext": false,
     "chat.includeApplyingInstructions": false,
-    "extensions.ignoreRecommendations": true, // VSCode Core
+    "extensions.ignoreRecommendations": true,
+    "prettier.enable": false, // VSCode Core
 }

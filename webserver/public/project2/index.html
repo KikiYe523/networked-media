@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+  <head>
+    <title>👁️Did You Notice?</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@2.3.4/lib/p5.js"></script>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <audio id="background-audio" src="audio/did-you-notice.mp3" loop preload="auto"></audio>
+    <main id="stage" class="stage">
+      <div id="background" class="background" aria-hidden="true">
+        <img class="background-frame is-current" src="images/background/background_01.png" alt="" />
+        <img class="background-frame" src="images/background/background_02.png" alt="" />
+        <img class="background-frame" src="images/background/background_03.png" alt="" />
+        <img class="background-frame" src="images/background/background_04.png" alt="" />
+        <img class="background-frame" src="images/background/background_05.png" alt="" />
+        <img class="background-frame" src="images/background/background_06.png" alt="" />
+        <img class="background-frame" src="images/background/background_07.png" alt="" />
+        <img class="background-frame" src="images/background/background_08.png" alt="" />
+        <img class="background-frame" src="images/background/background_09.png" alt="" />
+        <img class="background-frame" src="images/background/background_10.png" alt="" />
+        <img class="background-frame" src="images/background/background_11.png" alt="" />
+        <img class="background-frame" src="images/background/background_12.png" alt="" />
+      </div>
+      <header>
+        <h1>Did You Notice?</h1>
+      </header>
+      <div id="introduction" class="introduction"><p id="intro-text"></p></div>
+      <canvas id="floating-canvas" aria-hidden="true"></canvas>
+      <div id="object-egg" class="object egg">
+        <img class="piece is-current" src="images/egg/egg_01.png" alt="Raw egg" />
+        <img class="piece" src="images/egg/egg_02.png" alt="Raw egg" />
+        <img class="piece" src="images/egg/egg_03.png" alt="Raw egg" />
+        <img class="piece" src="images/egg/egg_04.png" alt="Raw egg" />
+        <img class="piece" src="images/egg/egg_05.png" alt="Raw egg" />
+        <img class="piece" src="images/egg/egg_06.png" alt="Raw egg" />
+        <img class="piece" src="images/egg/egg_07.png" alt="Raw egg" />
+        <img class="piece" src="images/egg/egg_08.png" alt="Raw egg" />
+        <img class="piece" src="images/egg/egg_09.png" alt="Raw egg" />
+        <img class="piece" src="images/egg/egg_10.png" alt="Raw egg" />
+        <span class="marker" aria-hidden="true"></span>
+        <span id="label-egg" class="time-label"></span>
+        <section id="note-egg" class="object-note">
+        <img src="images/details/egg.png" alt="Egg - illustrated receipt with narration and observation details" />
+      </section>
+      </div>
+      <div id="object-lamb" class="object lamb">
+        <img class="piece is-current" src="images/lamb/lamb_01.png" alt="Raw lamb chops" />
+        <img class="piece" src="images/lamb/lamb_02.png" alt="Raw lamb chops" />
+        <img class="piece" src="images/lamb/lamb_03.png" alt="Raw lamb chops" />
+        <img class="piece" src="images/lamb/lamb_04.png" alt="Raw lamb chops" />
+        <img class="piece" src="images/lamb/lamb_05.png" alt="Raw lamb chops" />
+        <img class="piece" src="images/lamb/lamb_06.png" alt="Raw lamb chops" />
+        <img class="piece" src="images/lamb/lamb_07.png" alt="Raw lamb chops" />
+        <img class="piece" src="images/lamb/lamb_08.png" alt="Raw lamb chops" />
+        <img class="piece" src="images/lamb/lamb_09.png" alt="Raw lamb chops" />
+        <img class="piece" src="images/lamb/lamb_10.png" alt="Raw lamb chops" />
+        <img class="piece" src="images/lamb/lamb_11.png" alt="Raw lamb chops" />
+        <img class="piece" src="images/lamb/lamb_12.png" alt="Raw lamb chops" />
+        <img class="piece" src="images/lamb/lamb_13.png" alt="Raw lamb chops" />
+        <img class="piece" src="images/lamb/lamb_14.png" alt="Raw lamb chops" />
+        <span class="marker" aria-hidden="true"></span>
+        <span id="label-lamb" class="time-label"></span>
+        <section id="note-lamb" class="object-note on-left">
+        <img src="images/details/lamb.png" alt="Lamb - illustrated receipt with narration and observation details" />
+      </section>
+      </div>
+      <div id="object-glass" class="object glass">
+        <img class="piece is-current" src="images/glass/glass_01.png" alt="Ice cube in tea" />
+        <img class="piece" src="images/glass/glass_02.png" alt="Ice cube in tea" />
+        <img class="piece" src="images/glass/glass_03.png" alt="Ice cube in tea" />
+        <img class="piece" src="images/glass/glass_04.png" alt="Ice cube in tea" />
+        <img class="piece" src="images/glass/glass_05.png" alt="Ice cube in tea" />
+        <img class="piece" src="images/glass/glass_06.png" alt="Ice cube in tea" />
+        <img class="piece" src="images/glass/glass_07.png" alt="Ice cube in tea" />
+        <img class="piece" src="images/glass/glass_08.png" alt="Ice cube in tea" />
+        <img class="piece" src="images/glass/glass_09.png" alt="Ice cube in tea" />
+        <img class="piece" src="images/glass/glass_10.png" alt="Ice cube in tea" />
+        <span class="marker" aria-hidden="true"></span>
+        <span id="label-glass" class="time-label"></span>
+        <section id="note-glass" class="object-note on-left">
+        <img src="images/details/ice.png" alt="Ice cube in tea - illustrated receipt with narration and observation details" />
+      </section>
+      </div>
+      <div id="object-blister_pills" class="object blister_pills">
+        <img class="piece is-current" src="images/blister_pills/blister_01.png" alt="Pills eaten" />
+        <img class="piece" src="images/blister_pills/blister_02.png" alt="Pills eaten" />
+        <img class="piece" src="images/blister_pills/blister_03.png" alt="Pills eaten" />
+        <img class="piece" src="images/blister_pills/blister_04.png" alt="Pills eaten" />
+        <img class="piece" src="images/blister_pills/blister_05.png" alt="Pills eaten" />
+        <img class="piece" src="images/blister_pills/blister_06.png" alt="Pills eaten" />
+        <img class="piece" src="images/blister_pills/blister_07.png" alt="Pills eaten" />
+        <img class="piece" src="images/blister_pills/blister_08.png" alt="Pills eaten" />
+        <img class="piece" src="images/blister_pills/blister_09.png" alt="Pills eaten" />
+        <img class="piece" src="images/blister_pills/blister_10.png" alt="Pills eaten" />
+        <span class="marker" aria-hidden="true"></span>
+        <span id="label-blister_pills" class="time-label"></span>
+        <section id="note-blister_pills" class="object-note">
+        <img src="images/details/peels.png" alt="Pills eaten - illustrated receipt with narration and observation details" />
+      </section>
+      </div>
+      <div id="object-tomato" class="object tomato">
+        <img class="piece is-current" src="images/tomato/tomato_01.png" alt="Cherry tomatoes eaten" />
+        <img class="piece" src="images/tomato/tomato_02.png" alt="Cherry tomatoes eaten" />
+        <img class="piece" src="images/tomato/tomato_03.png" alt="Cherry tomatoes eaten" />
+        <img class="piece" src="images/tomato/tomato_04.png" alt="Cherry tomatoes eaten" />
+        <img class="piece" src="images/tomato/tomato_05.png" alt="Cherry tomatoes eaten" />
+        <img class="piece" src="images/tomato/tomato_06.png" alt="Cherry tomatoes eaten" />
+        <img class="piece" src="images/tomato/tomato_07.png" alt="Cherry tomatoes eaten" />
+        <img class="piece" src="images/tomato/tomato_08.png" alt="Cherry tomatoes eaten" />
+        <img class="piece" src="images/tomato/tomato_09.png" alt="Cherry tomatoes eaten" />
+        <img class="piece" src="images/tomato/tomato_10.png" alt="Cherry tomatoes eaten" />
+        <span class="marker" aria-hidden="true"></span>
+        <span id="label-tomato" class="time-label"></span>
+        <section id="note-tomato" class="object-note on-left">
+        <img src="images/details/tomato.png" alt="Tomato - illustrated receipt with narration and observation details" />
+      </section>
+      </div>
+      <div id="object-strawberry" class="object strawberry">
+        <img class="piece is-current" src="images/strawberry/strawberry_01.png" alt="Half of a strawberry" />
+        <img class="piece" src="images/strawberry/strawberry_02.png" alt="Half of a strawberry" />
+        <img class="piece" src="images/strawberry/strawberry_03.png" alt="Half of a strawberry" />
+        <img class="piece" src="images/strawberry/strawberry_04.png" alt="Half of a strawberry" />
+        <img class="piece" src="images/strawberry/strawberry_05.png" alt="Half of a strawberry" />
+        <img class="piece" src="images/strawberry/strawberry_06.png" alt="Half of a strawberry" />
+        <img class="piece" src="images/strawberry/strawberry_07.png" alt="Half of a strawberry" />
+        <img class="piece" src="images/strawberry/strawberry_08.png" alt="Half of a strawberry" />
+        <img class="piece" src="images/strawberry/strawberry_09.png" alt="Half of a strawberry" />
+        <img class="piece" src="images/strawberry/strawberry_10.png" alt="Half of a strawberry" />
+        <img class="piece" src="images/strawberry/strawberry_11.png" alt="Half of a strawberry" />
+        <img class="piece" src="images/strawberry/strawberry_12.png" alt="Half of a strawberry" />
+        <span class="marker" aria-hidden="true"></span>
+        <span id="label-strawberry" class="time-label"></span>
+        <section id="note-strawberry" class="object-note">
+        <img src="images/details/strawberry.png" alt="Strawberry - illustrated receipt with narration and observation details" />
+      </section>
+      </div>
+      <div id="object-lemon" class="object lemon">
+        <img class="piece is-current" src="images/lemon/lemon_01.png" alt="Lemon slice" />
+        <img class="piece" src="images/lemon/lemon_02.png" alt="Lemon slice" />
+        <img class="piece" src="images/lemon/lemon_03.png" alt="Lemon slice" />
+        <img class="piece" src="images/lemon/lemon_04.png" alt="Lemon slice" />
+        <img class="piece" src="images/lemon/lemon_05.png" alt="Lemon slice" />
+        <img class="piece" src="images/lemon/lemon_06.png" alt="Lemon slice" />
+        <img class="piece" src="images/lemon/lemon_07.png" alt="Lemon slice" />
+        <img class="piece" src="images/lemon/lemon_08.png" alt="Lemon slice" />
+        <img class="piece" src="images/lemon/lemon_09.png" alt="Lemon slice" />
+        <img class="piece" src="images/lemon/lemon_10.png" alt="Lemon slice" />
+        <img class="piece" src="images/lemon/lemon_11.png" alt="Lemon slice" />
+        <img class="piece" src="images/lemon/lemon_12.png" alt="Lemon slice" />
+        <span class="marker" aria-hidden="true"></span>
+        <span id="label-lemon" class="time-label"></span>
+        <section id="note-lemon" class="object-note">
+        <img src="images/details/lemon.png" alt="Lemon - illustrated receipt with narration and observation details" />
+      </section>
+      </div>
+      <div id="object-orange" class="object orange">
+        <img class="piece is-current" src="images/orange/orange_01.png" alt="Orange peel" />
+        <img class="piece" src="images/orange/orange_02.png" alt="Orange peel" />
+        <img class="piece" src="images/orange/orange_03.png" alt="Orange peel" />
+        <img class="piece" src="images/orange/orange_04.png" alt="Orange peel" />
+        <img class="piece" src="images/orange/orange_05.png" alt="Orange peel" />
+        <img class="piece" src="images/orange/orange_06.png" alt="Orange peel" />
+        <img class="piece" src="images/orange/orange_07.png" alt="Orange peel" />
+        <img class="piece" src="images/orange/orange_08.png" alt="Orange peel" />
+        <img class="piece" src="images/orange/orange_09.png" alt="Orange peel" />
+        <img class="piece" src="images/orange/orange_10.png" alt="Orange peel" />
+        <img class="piece" src="images/orange/orange_11.png" alt="Orange peel" />
+        <img class="piece" src="images/orange/orange_12.png" alt="Orange peel" />
+        <span class="marker" aria-hidden="true"></span>
+        <span id="label-orange" class="time-label"></span>
+        <section id="note-orange" class="object-note on-left">
+        <img src="images/details/orange.png" alt="Orange - illustrated receipt with narration and observation details" />
+      </section>
+      </div>
+      <div id="object-receipt" class="object receipt">
+        <img class="piece is-current" src="images/receipt/receipt_01.png" alt="Receipt" />
+        <img class="piece" src="images/receipt/receipt_02.png" alt="Receipt" />
+        <img class="piece" src="images/receipt/receipt_03.png" alt="Receipt" />
+        <img class="piece" src="images/receipt/receipt_04.png" alt="Receipt" />
+        <img class="piece" src="images/receipt/receipt_05.png" alt="Receipt" />
+        <img class="piece" src="images/receipt/receipt_06.png" alt="Receipt" />
+        <img class="piece" src="images/receipt/receipt_07.png" alt="Receipt" />
+        <img class="piece" src="images/receipt/receipt_08.png" alt="Receipt" />
+        <img class="piece" src="images/receipt/receipt_09.png" alt="Receipt" />
+        <img class="piece" src="images/receipt/receipt_10.png" alt="Receipt" />
+        <span class="marker" aria-hidden="true"></span>
+        <span id="label-receipt" class="time-label"></span>
+        <section id="note-receipt" class="object-note">
+        <img src="images/details/receipt.png" alt="Receipt - illustrated receipt with narration and observation details" />
+      </section>
+      </div>
+      <div id="object-toilet_roll" class="object toilet_roll">
+        <img class="piece is-current" src="images/toilet_roll/roll_01.png" alt="Toilet paper used" />
+        <img class="piece" src="images/toilet_roll/roll_02.png" alt="Toilet paper used" />
+        <img class="piece" src="images/toilet_roll/roll_03.png" alt="Toilet paper used" />
+        <img class="piece" src="images/toilet_roll/roll_04.png" alt="Toilet paper used" />
+        <img class="piece" src="images/toilet_roll/roll_05.png" alt="Toilet paper used" />
+        <img class="piece" src="images/toilet_roll/roll_06.png" alt="Toilet paper used" />
+        <img class="piece" src="images/toilet_roll/roll_07.png" alt="Toilet paper used" />
+        <img class="piece" src="images/toilet_roll/roll_08.png" alt="Toilet paper used" />
+        <img class="piece" src="images/toilet_roll/roll_09.png" alt="Toilet paper used" />
+        <img class="piece" src="images/toilet_roll/roll_10.png" alt="Toilet paper used" />
+        <img class="piece" src="images/toilet_roll/roll_11.png" alt="Toilet paper used" />
+        <img class="piece" src="images/toilet_roll/roll_12.png" alt="Toilet paper used" />
+        <img class="piece" src="images/toilet_roll/roll_13.png" alt="Toilet paper used" />
+        <img class="piece" src="images/toilet_roll/roll_14.png" alt="Toilet paper used" />
+        <span class="marker" aria-hidden="true"></span>
+        <span id="label-toilet_roll" class="time-label"></span>
+        <section id="note-toilet_roll" class="object-note on-left">
+        <img src="images/details/paper.png" alt="Toilet paper used - illustrated receipt with narration and observation details" />
+      </section>
+      </div>
+      <footer>
+        <span>Observed October 1–7, 2026</span>
+        <span class="footer-right">A record of things I almost missed</span>
+      </footer>
+    </main>
+  </body>
+</html>

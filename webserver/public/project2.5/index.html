@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hold Still</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="p5.js"></script>
+    <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+  </head>
+  <body>
+    <main class="stage" id="stage">
+      <header class="heading">
+        <h1>Hold Still</h1>
+        <p>An exercise in staying here.</p>
+      </header>
+      <div class="camera-controls">
+        <p id="camera-status" role="status">
+          Look toward the screen to bring the images into focus.
+        </p>
+      </div>
+      <video
+        id="camera"
+        class="camera-feed"
+        width="640"
+        height="480"
+        autoplay
+        muted
+        playsinline
+        aria-hidden="true"
+      ></video>
+
+      <!-- Decorative lines share the same percentage coordinates as the labels. -->
+      <svg
+        class="connections"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <line x1="17" y1="27" x2="55" y2="22" />
+        <line x1="55" y1="22" x2="74" y2="65" />
+        <line x1="74" y1="65" x2="35" y2="76" />
+        <line x1="35" y1="76" x2="17" y2="27" />
+        <line x1="17" y1="27" x2="74" y2="65" />
+      </svg>
+
+      <!-- Replace these image paths with your images or GIFs later. -->
+      <img class="piece piece-one" src="images/fragment-peach.svg" alt="" />
+      <img class="piece piece-two" src="images/fragment-blue.svg" alt="" />
+      <img class="piece piece-three" src="images/fragment-peach.svg" alt="" />
+      <img class="piece piece-four" src="images/fragment-blue.svg" alt="" />
+      <img class="piece piece-five" src="images/fragment-peach.svg" alt="" />
+      <img class="piece piece-six" src="images/fragment-blue.svg" alt="" />
+      <img class="piece piece-seven" src="images/fragment-peach.svg" alt="" />
+
+      <p class="node node-one"><span></span>stay here</p>
+      <p class="node node-two"><span></span>take your time</p>
+      <p class="node node-three"><span></span>hold still</p>
+      <p class="node node-four"><span></span>just for a moment</p>
+
+      <footer class="footer">
+        <p>A moment without a task.</p>
+        <p>01 / a study of stillness</p>
+      </footer>
+    </main>
+    <script src="sketch.js"></script>
+  </body>
+</html>

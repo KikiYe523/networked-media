@@ -1,0 +1,306 @@
+@font-face {
+  font-family: "Title";
+  src: url("fonts/mom.ttf") format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #fffefa;
+  color: #1a1a1a;
+  font-family: "Courier New", monospace;
+}
+
+.stage {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* absolute positions use the relative parent as their starting point */
+header,
+footer,
+.object,
+.marker,
+.time-label,
+.object-note,
+#floating-canvas,
+.introduction {
+  position: absolute;
+}
+
+header {
+  top: 24px;
+  left: 28px;
+  z-index: 6;
+}
+
+h1 {
+  margin: 0;
+  font-family: "Title", serif;
+  font-size: 42px;
+  font-weight: normal;
+}
+
+footer {
+  z-index: 6;
+  bottom: 24px;
+  left: 28px;
+  right: 28px;
+  font-size: 12px;
+}
+
+.footer-right {
+  float: right;
+}
+
+/* keep the object images at the size of the files */
+.object {
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  transition:
+    opacity 2s linear,
+    filter 0.6s linear;
+}
+
+.object.is-present {
+  visibility: visible;
+  opacity: 1;
+}
+.object.is-active {
+  z-index: 4;
+}
+
+.object.is-background {
+  filter: blur(14px);
+  transition:
+    opacity 2s linear,
+    filter 0.8s linear;
+}
+
+.piece,
+.background-frame { display: none; }
+
+.piece {
+  transition: opacity 0.6s linear;
+}
+
+.piece.is-current,
+.background-frame.is-current,
+.object-note img {
+  display: block;
+}
+
+.object.is-finished .piece,
+.is-active .time-label,
+.introduction.is-hidden {
+  visibility: hidden;
+}
+
+.object.is-fading .piece,
+.introduction.is-faded {
+  opacity: 0;
+}
+
+/* the little red squares and the time next to each object. */
+.marker,
+.time-label {
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+}
+
+.marker {
+  margin: -5px 0 0 -5px;
+  width: 10px;
+  height: 10px;
+  background: rgb(218, 35, 25);
+}
+
+.time-label {
+  margin: 9px 0 0 8px;
+  padding: 3px 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  color: rgb(218, 35, 25);
+  background: rgba(255, 254, 250, 0.92);
+}
+
+/* leave a gap between the receipt and its object. */
+.object-note {
+  left: 100%;
+  margin-left: 40px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s linear;
+  z-index: 5;
+}
+
+.object-note.on-left {
+  left: auto;
+  right: 100%;
+  margin-left: 0;
+  margin-right: 40px;
+}
+
+.is-active .object-note {
+  opacity: 1;
+  visibility: visible;
+}
+
+.is-active.is-fading .object-note {
+  opacity: 0;
+  transition-duration: 0.6s;
+}
+
+/* the line canvas sits above the background objects. */
+#floating-canvas {
+  top: 0;
+  left: 0;
+  display: block;
+  z-index: 2;
+  transition:
+    filter 0.6s linear,
+    opacity 2s linear;
+}
+
+.showing-detail #floating-canvas {
+  filter: blur(14px);
+  transition-duration: 0.8s;
+}
+
+/* adjust each object and its receipt here.*/
+.egg {
+  left: 12%;
+  top: 28%;
+}
+.egg .object-note {
+  top: -40px;
+}
+
+.lamb {
+  left: 48%;
+  top: 25%;
+}
+.lamb .object-note {
+  top: -10px;
+}
+
+.glass {
+  left: 82%;
+  top: 30%;
+}
+.glass .object-note {
+  top: 45px;
+}
+
+.blister_pills {
+  left: 28%;
+  top: 47%;
+}
+.blister_pills .object-note {
+  top: -120px;
+}
+
+.tomato {
+  left: 65%;
+  top: 47%;
+}
+.tomato .object-note {
+  top: -70px;
+}
+
+.strawberry {
+  left: 10%;
+  top: 66%;
+}
+.lemon {
+  left: 45%;
+  top: 66%;
+}
+.strawberry .object-note,
+.lemon .object-note {
+  top: -150px;
+}
+
+.orange {
+  left: 85%;
+  top: 65%;
+}
+.orange .object-note {
+  top: -115px;
+}
+
+.receipt {
+  left: 28%;
+  top: 84%;
+}
+.receipt .object-note {
+  top: 0;
+}
+
+.toilet_roll {
+  left: 68%;
+  top: 84%;
+}
+.toilet_roll .object-note {
+  top: -110px;
+}
+
+/* the opening and ending share this centered text box */
+.introduction {
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  max-width: 660px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.6;
+  transition: opacity 1s linear;
+  z-index: 5;
+}
+
+.introduction p {
+  margin: 0;
+  white-space: pre-line;
+}
+
+/* clear the objects and lines before the final text */
+.stage.is-ending .object {
+  opacity: 0;
+  transition: opacity 2s linear;
+}
+
+.stage.is-ending #floating-canvas {
+  opacity: 0;
+}
+
+/* have the eye background fills the browser*/
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 2s linear, filter 0.6s linear;
+  z-index: 0;
+}
+.background.is-visible { opacity: 0.3; }
+.background-frame {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.showing-detail .background {
+  filter: blur(14px);
+  transition: opacity 2s linear, filter 0.8s linear;
+}
+
