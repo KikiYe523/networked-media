@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="500" height="580" viewBox="0 0 500 580">
-  <defs>
-    <radialGradient id="skin"><stop stop-color="#fffdf4"/><stop offset=".55" stop-color="#f0d7ca"/><stop offset="1" stop-color="#be9992"/></radialGradient>
-    <clipPath id="cut"><path d="M35 68 307 12 477 158 422 482 149 565 12 363Z"/></clipPath>
-    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".13"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
-  </defs>
-  <g clip-path="url(#cut)"><rect width="500" height="580" fill="url(#skin)"/><path d="M-70 350Q210 90 570 310L570 420Q230 225-70 470Z" fill="#fffefa"/><ellipse cx="294" cy="297" rx="90" ry="56" fill="#ede9ef"/><ellipse cx="312" cy="295" rx="38" ry="51" fill="#989fbb"/><ellipse cx="320" cy="295" rx="18" ry="43" fill="#211f29"/><circle cx="311" cy="276" r="9" fill="white"/><rect width="500" height="580" fill="transparent" filter="url(#grain)"/></g>
-</svg>

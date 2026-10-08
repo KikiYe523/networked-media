@@ -158,7 +158,6 @@ footer {
   transition-duration: 0.6s;
 }
 
-/* the line canvas sits above the background objects. */
 #floating-canvas {
   top: 0;
   left: 0;
@@ -174,7 +173,6 @@ footer {
   transition-duration: 0.8s;
 }
 
-/* adjust each object and its receipt here.*/
 .egg {
   left: 12%;
   top: 28%;
@@ -281,7 +279,6 @@ footer {
   opacity: 0;
 }
 
-/* have the eye background fills the browser*/
 .background {
   position: absolute;
   top: 0;

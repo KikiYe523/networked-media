@@ -383,11 +383,10 @@ function observationLabel(index) {
   return label;
 }
 
-// these percentages need to match the object positions in CSS
 let lineX = [12, 48, 82, 28, 65, 10, 45, 85, 28, 68];
 let lineY = [28, 25, 30, 47, 47, 66, 66, 65, 84, 84];
 
-// keep p5 just for the line animation. use Date and setInterval for the sequences
+// keep p5 just for the line animation
 function setup() {
   pixelDensity(1);
   createCanvas(
@@ -419,7 +418,7 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
-// Sound may need a click or key press before the browser allows it.
+// sound  need a click or key press before the browser allows it!!!!!
 function startAudio() {
   if (backgroundAudio.paused) {
     backgroundAudio.play().catch(function () {
