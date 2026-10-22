@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View all posts</title>
+    <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+{%include "partial-nav.njk" %}
+
+{# in order to access the server data, we nned to use the variable we passed in the server.js for the render of view-all.njk #}
+{# messagesArrayFromServer #}
+{% for singleMessage in messagesArrayFromServer %}
+    <p>
+        <span>user</span>
+        <span>{{singleMessage.user}}</span>
+
+        <span>message</span>
+        <span>{{singleMessage.message}}</span>
+    </p>
+{% endfor %}
+</body>
+</html>

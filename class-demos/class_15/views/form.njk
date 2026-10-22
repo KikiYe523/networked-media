@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send a message</title>
+    <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+{% include "partial-nav.njk" %}
+
+{# form sends dta via a post request to the server #}
+{# in order to send data to server, we nned attributes in the form #}
+{# attribute, method, action #}
+{# method: what type of http request are we making? for forms, always be POST #}
+
+<form method = "POST" action = "/send-message">
+    {# jnputs are the data to be sent #}
+    {# in order to process the data, we need to include the name attribute which will name the property in the request.body #}
+    <input type ='text' placeholder ='name' name="user">
+    {# always we need to include a submit button #}
+    <input type ='text' placeholder ='write a message' name="message">
+    <input type ='submit' value = "send message">
+</form>
+</body>
+</html>
