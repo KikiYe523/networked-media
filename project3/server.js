@@ -111,7 +111,7 @@ app.post("/quiz-result", (request, response) => {
                 results.push(types[i]);
             }
         }
-        response.render("quiz-result.njk", { draft: draft, results: results, step: "type" });
+        response.render("quiz.njk", { draft: draft, results: results, step: "type" });
     }
 });
 // Opening the wall or choosing Clear filter displays the full array.
@@ -157,6 +157,6 @@ app.post("/send-card", (request, response) => {
     // Refreshing that page will not submit the same card a second time.
     response.redirect("/community");
 });
-app.listen(8081, () => {
-    console.log("http://localhost:8081");
+app.listen(8080, () => {
+    console.log("http://localhost:8080");
 });

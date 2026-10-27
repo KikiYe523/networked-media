@@ -1,88 +1,141 @@
 <html>
 
 <head>
-   <title>Your climbing type · Nice to “Climb” You NYC</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="/style.css" rel="stylesheet">
+      <title>Your climbing type · Nice to “Climb” You NYC</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="/style.css" rel="stylesheet">
 
 </head>
 
 <body>
-   
-   <main class="narrow">
 
-      <h1>What’s your<br>climbing energy?</h1>
-      <p>Five questions. Pick what sounds like you.</p>
-      {% if error %}<p class="quiz-error">{{ error }}</p>{% endif %}
-      {# ans in the same question share a name, so only one can be selected.
+      <main class="narrow">
+            {# One page shows questions first, then results after the scoring route
+         passes a results array. Retaking the quiz opens the question branch again. #}
+            {% if results %}
+
+
+            {% if results.length > 1 %}<h1>A little<br>of both.</h1>
+            <p>A tie! Choose the type that feels like you.</p>
+            {% else %}<h1>Your climbing type</h1>{% endif %}
+            <form method="POST" action="/continue">
+                  {% include "partial-draft.njk" %}
+                  {# even a single result uses this loop. A tie can contain more than one.
+   Only the single-result case is checked automatically, ties need a choice. #}
+                  {% for result in results %}
+                  <label class="result-choice">
+                        <input type="radio" name="type" value="{{ result.name }}" required
+                              {% if results.length == 1 %}checked{% endif %}>
+                        <span class="result-title">{{ result.name }}</span>
+                        <img class="result-image" {% if result.code == "detective" %}src="/images/cat_beta.png"
+                              {% elif result.code == "retry" %}src="/images/cat_stubborn.png"
+                              {% elif result.code == "wanderer" %}src="/images/cat_wander.png"
+                              {% else %}src="/images/cat_mat.png" {% endif %} alt="{{ result.name }}">
+                        <span class="result-description">{{ result.description }}</span>
+                  </label>
+                  {% endfor %}
+                  <button name="destination" value="holds">Next →</button>
+                  <button class="quiet-button" name="destination" value="wall">Back to holds</button>
+            </form>
+            <form class="quiz-exit" method="POST" action="/continue">{% include "partial-draft.njk" %}<button
+                        class="quiet-button" name="destination" value="type">Try the quiz again</button></form>
+
+
+            {% else %}
+
+
+            <h1>What’s your<br>climbing energy?</h1>
+            <p>Five questions. Pick what sounds like you.</p>
+            {% if error %}<p class="quiz-error">{{ error }}</p>{% endif %}
+            {# ans in the same question share a name, so only one can be selected.
    Their values are the personality codes used for scoring. The checked
    conditions restore choices if the server returns an incomplete form. #}
-      <form method="POST" action="/quiz-result">
-         {% include "partial-draft.njk" %}
-         <fieldset class="quiz-question">
-            <legend>01 / Shoes on. Chalk bag ready. You…</legend>
-            <label class="answer"><input type="radio" name="q1" value="wanderer"
-                  {% if draft.q1 == "wanderer" %}checked{% endif %} required> Follow the fun shapes.</label>
-            <label class="answer"><input type="radio" name="q1" value="detective"
-                  {% if draft.q1 == "detective" %}checked{% endif %} required> Decode the wall.</label>
-            <label class="answer"><input type="radio" name="q1" value="cheerleader"
-                  {% if draft.q1 == "cheerleader" %}checked{% endif %} required> “Where’s everyone?”</label>
-            <label class="answer"><input type="radio" name="q1" value="retry"
-                  {% if draft.q1 == "retry" %}checked{% endif %} required> Grab something. Go.</label>
-         </fieldset>
-         <fieldset class="quiz-question">
-            <legend>02 / Same move. Third fall. Your brain says…</legend>
-            <label class="answer"><input type="radio" name="q2" value="cheerleader"
-                  {% if draft.q2 == "cheerleader" %}checked{% endif %} required> “Anyone got beta?”</label>
-            <label class="answer"><input type="radio" name="q2" value="retry"
-                  {% if draft.q2 == "retry" %}checked{% endif %} required> “Fourth time’s the charm.”</label>
-            <label class="answer"><input type="radio" name="q2" value="detective"
-                  {% if draft.q2 == "detective" %}checked{% endif %} required> “What am I missing?”</label>
-            <label class="answer"><input type="radio" name="q2" value="wanderer"
-                  {% if draft.q2 == "wanderer" %}checked{% endif %} required> “Let’s see other climbs.”</label>
-         </fieldset>
-         <fieldset class="quiz-question">
-            <legend>03 / Between climbs, you’re usually…</legend>
-            <label class="answer"><input type="radio" name="q3" value="retry"
-                  {% if draft.q3 == "retry" %}checked{% endif %} required> Eyeing my next attempt.</label>
-            <label class="answer"><input type="radio" name="q3" value="wanderer"
-                  {% if draft.q3 == "wanderer" %}checked{% endif %} required> Exploring another corner.</label>
-            <label class="answer"><input type="radio" name="q3" value="cheerleader"
-                  {% if draft.q3 == "cheerleader" %}checked{% endif %} required> Chatting on the mats.</label>
-            <label class="answer"><input type="radio" name="q3" value="detective"
-                  {% if draft.q3 == "detective" %}checked{% endif %} required> Air-climbing the beta.</label>
-         </fieldset>
-         <fieldset class="quiz-question">
-            <legend>04 / Tonight’s tiny victory?</legend>
-            <label class="answer"><input type="radio" name="q4" value="detective"
-                  {% if draft.q4 == "detective" %}checked{% endif %} required> Cracked the secret beta.</label>
-            <label class="answer"><input type="radio" name="q4" value="cheerleader"
-                  {% if draft.q4 == "cheerleader" %}checked{% endif %} required> The whole crew had fun.</label>
-            <label class="answer"><input type="radio" name="q4" value="wanderer"
-                  {% if draft.q4 == "wanderer" %}checked{% endif %} required> Found my new favorite climb.</label>
-            <label class="answer"><input type="radio" name="q4" value="retry"
-                  {% if draft.q4 == "retry" %}checked{% endif %} required> Got one hold further.</label>
-         </fieldset>
-         <fieldset class="quiz-question">
-            <legend>05 / Pick your climbing-day souvenir.</legend>
-            <label class="answer"><input type="radio" name="q5" value="wanderer"
-                  {% if draft.q5 == "wanderer" %}checked{% endif %} required> A climb worth repeating.</label>
-            <label class="answer"><input type="radio" name="q5" value="retry"
-                  {% if draft.q5 == "retry" %}checked{% endif %} required> A hard-earned move.</label>
-            <label class="answer"><input type="radio" name="q5" value="detective"
-                  {% if draft.q5 == "detective" %}checked{% endif %} required> A clever new trick.</label>
-            <label class="answer"><input type="radio" name="q5" value="cheerleader"
-                  {% if draft.q5 == "cheerleader" %}checked{% endif %} required> A good shared laugh.</label>
-         </fieldset>
-         <button type="submit">See my result</button>
-      </form>
-      <form class="quiz-exit" method="POST" action="/continue">
-         {% include "partial-draft.njk" %}
-         <button class="quiet-button" name="destination" value="holds">Skip this quiz →</button>
-         <button class="quiet-button" name="destination" value="wall">Back to the hold wall</button>
-      </form>
+            <form method="POST" action="/quiz-result">
+                  {% include "partial-draft.njk" %}
+                  <fieldset class="quiz-question">
+                        <legend>01 / Shoes on. Chalk bag ready. You…</legend>
+                        <label class="answer"><input type="radio" name="q1" value="wanderer"
+                                    {% if draft.q1 == "wanderer" %}checked{% endif %} required> Follow the fun
+                              shapes.</label>
+                        <label class="answer"><input type="radio" name="q1" value="detective"
+                                    {% if draft.q1 == "detective" %}checked{% endif %} required> Decode the
+                              wall.</label>
+                        <label class="answer"><input type="radio" name="q1" value="cheerleader"
+                                    {% if draft.q1 == "cheerleader" %}checked{% endif %} required> “Where’s
+                              everyone?”</label>
+                        <label class="answer"><input type="radio" name="q1" value="retry"
+                                    {% if draft.q1 == "retry" %}checked{% endif %} required> Grab something. Go.</label>
+                  </fieldset>
+                  <fieldset class="quiz-question">
+                        <legend>02 / Same move. Third fall. Your brain says…</legend>
+                        <label class="answer"><input type="radio" name="q2" value="cheerleader"
+                                    {% if draft.q2 == "cheerleader" %}checked{% endif %} required> “Anyone got
+                              beta?”</label>
+                        <label class="answer"><input type="radio" name="q2" value="retry"
+                                    {% if draft.q2 == "retry" %}checked{% endif %} required> “Fourth time’s the
+                              charm.”</label>
+                        <label class="answer"><input type="radio" name="q2" value="detective"
+                                    {% if draft.q2 == "detective" %}checked{% endif %} required> “What am I
+                              missing?”</label>
+                        <label class="answer"><input type="radio" name="q2" value="wanderer"
+                                    {% if draft.q2 == "wanderer" %}checked{% endif %} required> “Let’s see other
+                              climbs.”</label>
+                  </fieldset>
+                  <fieldset class="quiz-question">
+                        <legend>03 / Between climbs, you’re usually…</legend>
+                        <label class="answer"><input type="radio" name="q3" value="retry"
+                                    {% if draft.q3 == "retry" %}checked{% endif %} required> Eyeing my next
+                              attempt.</label>
+                        <label class="answer"><input type="radio" name="q3" value="wanderer"
+                                    {% if draft.q3 == "wanderer" %}checked{% endif %} required> Exploring another
+                              corner.</label>
+                        <label class="answer"><input type="radio" name="q3" value="cheerleader"
+                                    {% if draft.q3 == "cheerleader" %}checked{% endif %} required> Chatting on the
+                              mats.</label>
+                        <label class="answer"><input type="radio" name="q3" value="detective"
+                                    {% if draft.q3 == "detective" %}checked{% endif %} required> Air-climbing the
+                              beta.</label>
+                  </fieldset>
+                  <fieldset class="quiz-question">
+                        <legend>04 / Tonight’s tiny victory?</legend>
+                        <label class="answer"><input type="radio" name="q4" value="detective"
+                                    {% if draft.q4 == "detective" %}checked{% endif %} required> Cracked the secret
+                              beta.</label>
+                        <label class="answer"><input type="radio" name="q4" value="cheerleader"
+                                    {% if draft.q4 == "cheerleader" %}checked{% endif %} required> The whole crew had
+                              fun.</label>
+                        <label class="answer"><input type="radio" name="q4" value="wanderer"
+                                    {% if draft.q4 == "wanderer" %}checked{% endif %} required> Found my new favorite
+                              climb.</label>
+                        <label class="answer"><input type="radio" name="q4" value="retry"
+                                    {% if draft.q4 == "retry" %}checked{% endif %} required> Got one hold
+                              further.</label>
+                  </fieldset>
+                  <fieldset class="quiz-question">
+                        <legend>05 / Pick your climbing-day souvenir.</legend>
+                        <label class="answer"><input type="radio" name="q5" value="wanderer"
+                                    {% if draft.q5 == "wanderer" %}checked{% endif %} required> A climb worth
+                              repeating.</label>
+                        <label class="answer"><input type="radio" name="q5" value="retry"
+                                    {% if draft.q5 == "retry" %}checked{% endif %} required> A hard-earned move.</label>
+                        <label class="answer"><input type="radio" name="q5" value="detective"
+                                    {% if draft.q5 == "detective" %}checked{% endif %} required> A clever new
+                              trick.</label>
+                        <label class="answer"><input type="radio" name="q5" value="cheerleader"
+                                    {% if draft.q5 == "cheerleader" %}checked{% endif %} required> A good shared
+                              laugh.</label>
+                  </fieldset>
+                  <button type="submit">See my result</button>
+            </form>
+            <form class="quiz-exit" method="POST" action="/continue">
+                  {% include "partial-draft.njk" %}
+                  <button class="quiet-button" name="destination" value="holds">Skip this quiz →</button>
+                  <button class="quiet-button" name="destination" value="wall">Back to the hold wall</button>
+            </form>
 
-   </main>
+
+            {% endif %}
+      </main>
 
 </body>
 
