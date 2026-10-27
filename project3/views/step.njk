@@ -1,0 +1,28 @@
+<html><head><title>Nice to “Climb” You NYC</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/style.css" rel="stylesheet">
+</head><body><main class="narrow">
+<form method="POST" action="/continue">{% include "partial-draft.njk" %}
+{# These three steps share a page because their structure is the same.
+   step chooses which fields to show. Values come back from the draft so
+   returning to a section does not mean typing everything again. #}
+{% if step == "holds" %}
+<h1>Your hold preferences</h1>
+<label>A hold I love<input name="favorite" value="{{ draft.favorite }}" maxlength="80" placeholder="Jugs, crimps, pinches…"></label>
+<label>A hold I avoid<input name="avoid" value="{{ draft.avoid }}" maxlength="80" placeholder="Slopers and I are working on it."></label>
+{% elif step == "kit" %}
+<h1>Shoes + gym</h1><p>Both optional.</p>
+<label>My go-to shoes<input name="shoes" value="{{ draft.shoes }}" maxlength="100" placeholder="Rental shoes count, too."></label>
+<label>Home gym / optional<select name="gym"><option value="">No home gym / prefer not to share</option>{% include "partial-gym-options.njk" %}</select></label>
+{% else %}
+<h1>Your story</h1>
+<label>What’s one small climbing moment that stayed with you?<textarea name="story" rows="5" maxlength="500" placeholder="A tiny win, a funny fall, or someone who cheered you on…">{{ draft.story }}</textarea></label>
+
+{% endif %}
+<div class="step-actions">
+{% if step == "holds" %}<button name="destination" value="kit">Next hold →</button><button class="quiet-button" name="destination" value="kit">Skip for now →</button>
+{% elif step == "kit" %}<button name="destination" value="story">Next hold →</button><button class="quiet-button" name="destination" value="story">Skip for now →</button>
+{% else %}<button name="destination" value="preview">See my card →</button>{% endif %}
+<button class="quiet-button" name="destination" value="wall">Back to the hold wall</button>
+</div>
+</form></main></body></html>

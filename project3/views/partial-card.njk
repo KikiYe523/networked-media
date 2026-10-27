@@ -1,0 +1,21 @@
+{# I use this in both preview and the community wall so the card stays the same.
+   The chosen personality decides which cat appears. #}
+{% if card.type %}<h2>{{ card.type }}</h2>{% endif %}
+<div class="card-picture">
+{% if card.type == "The Beta Detective" %}
+    <img src="/images/cat_beta.png" alt="Beta cat">
+{% elif card.type == "The One-More-Try" %}
+    <img src="/images/cat_stubborn.png" alt="Stubborn cat">
+{% elif card.type == "The Wanderer" %}
+    <img src="/images/cat_wander.png" alt="Wandering cat">
+{% elif card.type == "The Mat Cheerleader" %}
+    <img src="/images/cat_mat.png" alt="Cats on the mat">
+{% endif %}
+</div>
+<div class="card-details">
+{% if card.gym %}<p><strong>Home gym</strong><br>{{ card.gym }}</p>{% endif %}
+{% if card.shoes %}<p><strong>Shoes</strong><br>{{ card.shoes }}</p>{% endif %}
+{% if card.favorite %}<p><strong>Favorite hold</strong><br>{{ card.favorite }}</p>{% endif %}
+{% if card.avoid %}<p><strong>Least favorite hold</strong><br>{{ card.avoid }}</p>{% endif %}
+{% if card.story %}<blockquote>{{ card.story }}</blockquote>{% endif %}
+</div>

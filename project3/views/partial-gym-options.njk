@@ -1,0 +1,5 @@
+{# The server passes the same gym list to both forms, like the array in class 15.
+   The selected condition keeps the current choice visible after submitting. #}
+{% for gym in gyms %}
+<option value="{{ gym }}" {% if selectedGym == gym or draft.gym == gym %}selected{% endif %}>{{ gym }}</option>
+{% endfor %}

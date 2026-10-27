@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <title>Your card · Nice to “Climb” You NYC</title>
+    
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    
+<header>
+    <a class="wordmark" href="/">Nice to “Climb” You NYC</a>
+    <nav>
+        <a href="/">Make a Card</a>
+        <a href="/community">Community wall</a>
+    </nav>
+</header>
+
+    <main class="narrow">
+        <h1>Your card</h1>
+
+        <section class="preview-card background-{{ draft.background }}">
+            {# the shared card expects a variable called card. Hre it is still the
+               draft; on the community page it comes from the saved array. #}
+            {% set card = draft %}
+            {% include "partial-card.njk" %}
+        </section>
+
+        <form method="POST" action="/continue">
+            {% include "partial-draft.njk" %}
+            <button class="quiet-button" name="destination" value="wall">Edit card</button>
+        </form>
+
+        <form method="POST" action="/send-card">
+            {% include "partial-draft.njk" %}
+            <p class="note">Your published card will be public.</p>
+            <button type="submit">Publish card</button>
+        </form>
+    </main>
+</body>
+
+</html>

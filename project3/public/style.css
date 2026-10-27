@@ -1,0 +1,271 @@
+@font-face { font-family: "Bonices"; src: url("/fonts/Bonices.ttf") format("truetype"); }
+
+@font-face { font-family: "Grafipaint"; src: url("/fonts/Grafipaint.ttf") format("truetype"); }
+
+body {
+    margin: 0;
+    position: relative;
+    min-height: 100vh;
+    background: #f6f2e8;
+    color: #293d34;
+    font-family: "Grafipaint", Arial, sans-serif;
+    font-size: 24px;
+    line-height: 1.6;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("/images/nyc-illustrated-map.png") center top / cover;
+    opacity: 0.22;
+    pointer-events: none;
+}
+
+header, main {
+    position: relative;
+    width: 90%;
+    max-width: 1120px;
+    margin: auto;
+}
+
+main { padding: 36px 0; }
+
+.narrow { max-width: 760px; }
+
+a, a:visited { color: #293d34; }
+
+header {
+    padding: 24px 0;
+    border-bottom: 2px solid #b9bbaa;
+}
+
+nav { margin-top: 18px; }
+
+nav a {
+    display: inline-block;
+    margin: 0 13px;
+    font-size: 30px;
+    line-height: 1.5;
+}
+
+.wordmark { font-size: 38px; text-decoration: none; }
+
+.intro { padding: 25px 0 40px; }
+
+h1, .wordmark { font-family: "Bonices", Arial, sans-serif; font-weight: normal; }
+
+h1 {
+    font-size: 68px;
+    line-height: 1.1;
+    margin: 20px 0;
+}
+
+h2, .result-title { font-size: 48px; line-height: 1.2; }
+
+.intro h1 { line-height: 1.2; margin: 12px 0 24px; }
+
+.title-city {
+    display: block;
+    font-size: 36px;
+    letter-spacing: 3px;
+    margin-top: 12px;
+}
+
+.button, button {
+    display: inline-block;
+    padding: 13px 22px;
+    background: #e7a6b3;
+    border: 1px solid #293d34;
+    border-radius: 5px;
+    color: #293d34;
+    font-size: 26px;
+    line-height: 1.3;
+    text-decoration: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+header, .intro, .finish-route, .card-picture { text-align: center; }
+.hold img, .hold small, .result-image, .card-picture img, .result-description { display: block; }
+.quiet-button, .hold { background: transparent; border: 0; }
+
+.quiet-button {
+    padding: 12px 4px;
+    text-decoration: underline;
+}
+
+.text-link { margin-left: 20px; }
+
+.note { font-size: 18px; }
+
+/* The wall is the reference for the absolute positions below (class 10).
+   Image sizes come from the files. pointer-events: none lets clicks pass
+   through decorative cats to the hold buttons. */
+
+.home-page { max-width: none; }
+
+
+/*  might change this later*/
+.wall-window { overflow: hidden; }
+
+.hold-wall {
+    position: relative;
+    width: 1660px;
+    height: 1430px;
+    margin: 30px auto 0;
+}
+
+.hold-wall form { margin: 0; }
+
+.hold {
+    position: absolute;
+    padding: 0;
+    border-radius: 0;
+}
+
+.hold-one { top: 20px; left: 620px; }
+
+.hold-two { top: 400px; left: 570px; }
+
+.hold-three { top: 550px; left: 310px; }
+
+.hold-four { top: 700px; left: 600px; }
+
+.wall-cat { position: absolute; pointer-events: none; }
+
+.cat-balance { top: 50px; left: 100px; }
+
+.cat-hook { top: 180px; left: 840px; }
+
+.cat-dyno { top: 900px; left: 450px; }
+
+.finish-route { margin: 30px 0 60px; }
+
+/* Trhe general input rule makes fields full width. Radio buttons need
+   width auto here so their circles stay beside the answer text. */
+
+label { display: block; margin-bottom: 20px; }
+
+input, select, textarea {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 7px;
+    border: 1px solid #526258;
+    background: #fffcf5;
+    color: #293d34;
+    font: inherit;
+}
+
+.answer input, .result-choice input {
+    display: inline-block;
+    width: auto;
+    margin-right: 10px;
+}
+
+.step-actions, .gym-filter { margin: 30px 0; }
+
+.step-actions button { margin-right: 12px; }
+
+.gym-filter { max-width: 540px; }
+
+.empty-wall { padding: 20px 0; }
+
+.quiz-question {
+    border: 0;
+    border-top: 1px dashed #b9bbaa;
+    padding: 20px 0;
+    margin: 25px 0;
+}
+
+.quiz-question legend { font-size: 28px; font-weight: bold; }
+
+.answer {
+    padding: 12px;
+    margin-bottom: 6px;
+    background: #fffcf5;
+}
+
+.quiz-exit { margin-top: 20px; }
+
+.quiz-error { color: #9d2549; }
+
+.result-description { margin-top: 12px; }
+
+.result-image { margin: 20px auto; }
+
+.card, .preview-card, .result-choice {
+    box-sizing: border-box;
+    padding: 25px;
+    margin: 25px 0;
+    background: #e5e9c7;
+    border: 1px solid #526258;
+    overflow-wrap: anywhere;
+}
+
+.card {
+    display: inline-block;
+    vertical-align: top;
+    margin: 25px 12px;
+    font-size: 24px;
+    text-align: left;
+}
+
+/* both views use the same 5:7 frame. border-box includes padding and border
+   in these dimensions; otherwise the outside of the card would be larger. */
+.card, .preview-card {
+    width: 560px;
+    height: 784px;
+    padding: 18px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-width: 3px;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.preview-card { margin: 30px auto; }
+
+.card h2, .preview-card h2 { font-size: 38px; margin: 0 0 10px; text-align: center; }
+
+.card-picture { margin-bottom: 12px; }
+
+.card-picture img { margin: 0 auto; }
+
+/* The picture follows the resized image instead of keeping the old empty
+   space. Details use two columns so more fits inside the fixed 5:7 card. */
+.card-details { font-size: 22px; line-height: 1.3; }
+.card-details p {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 48%;
+    padding-right: 12px;
+    margin: 6px 0;
+    vertical-align: top;
+}
+.card-details blockquote { font-size: 22px; margin-top: 8px; padding-top: 8px; }
+
+blockquote {
+    margin: 20px 0 0;
+    padding-top: 15px;
+    border-top: 1px dashed #526258;
+}
+
+.background-1 { background-image: linear-gradient(rgba(255, 252, 245, 0.87), rgba(255, 252, 245, 0.87)), url("/images/card-background-1.png"); }
+.background-2 { background-image: linear-gradient(rgba(255, 252, 245, 0.87), rgba(255, 252, 245, 0.87)), url("/images/card-background-2.png"); }
+.background-3 { background-image: linear-gradient(rgba(255, 252, 245, 0.87), rgba(255, 252, 245, 0.87)), url("/images/card-background-3.png"); }
+.background-4 { background-image: linear-gradient(rgba(255, 252, 245, 0.87), rgba(255, 252, 245, 0.87)), url("/images/card-background-4.png"); }
+.background-5 { background-image: linear-gradient(rgba(255, 252, 245, 0.87), rgba(255, 252, 245, 0.87)), url("/images/card-background-5.png"); }
+
+/* Center the whole row, with equal margins on each card. Removing the space
+   between inline-block elements here keeps two cards from unexpectedly wrapping. */
+.community-page { max-width: 1200px; }
+.cards { text-align: center; font-size: 0; }
+
+.wall-intro { max-width: 800px; margin: 0 auto 30px; text-align: center; }
