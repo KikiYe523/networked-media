@@ -10,8 +10,7 @@
 <body>
 
       <main class="narrow">
-            {# One page shows questions first, then results after the scoring route
-         passes a results array. Retaking the quiz opens the question branch again. #}
+            {# same page, two branches: questions first, results after the server counts the answers #}
             {% if results %}
 
 
@@ -20,8 +19,7 @@
             {% else %}<h1>Your climbing type</h1>{% endif %}
             <form method="POST" action="/continue">
                   {% include "partial-draft.njk" %}
-                  {# even a single result uses this loop. A tie can contain more than one.
-   Only the single-result case is checked automatically, ties need a choice. #}
+                  {# loop through all the winners, including ties. only check it automatically if there’s one #}
                   {% for result in results %}
                   <label class="result-choice">
                         <input type="radio" name="type" value="{{ result.name }}" required
@@ -47,11 +45,10 @@
             <h1>What’s your<br>climbing energy?</h1>
             <p>Five questions. Pick what sounds like you.</p>
             {% if error %}<p class="quiz-error">{{ error }}</p>{% endif %}
-            {# ans in the same question share a name, so only one can be selected.
-   Their values are the personality codes used for scoring. The checked
-   conditions restore choices if the server returns an incomplete form. #}
             <form method="POST" action="/quiz-result">
                   {% include "partial-draft.njk" %}
+                  {# same name groups the radio buttons; values are the codes the server counts #}
+                  {# checked brings back previous choices if a question was missed #}
                   <fieldset class="quiz-question">
                         <legend>01 / Shoes on. Chalk bag ready. You…</legend>
                         <label class="answer"><input type="radio" name="q1" value="wanderer"

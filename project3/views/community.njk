@@ -12,7 +12,8 @@
     <a class="wordmark" href="/">Nice to “Climb” You NYC</a>
     <nav>
         <a href="/">Make a Card</a>
-        <a href="/community">Community wall</a>
+        <a href="/community" aria-current="page">Community wall</a>
+        <a href="/about">About</a>
     </nav>
 </header>
 <main class="community-page">
@@ -21,6 +22,7 @@
 
         <a class="button" href="/make-card">Create your card ↗</a>
 
+        {# this form asks the server for matching cards. clear filter opens the full wall again #}
         <form class="gym-filter" method="POST" action="/filter-cards">
             <label>Find cards by home gym<select name="gym">
                     <option value="">All gyms</option>{% include "partial-gym-options.njk" %}
@@ -32,9 +34,7 @@
             one.{% endif %}</p>
         {% endif %}
         <section class="cards">
-            {# the server already chose which cards match the gymtThis loop only
-   displays them, using the same content aes the preview. giltering changes
-   this list, not the array holding everyone's submissions. #}
+            {# cards is already filtered by the server. the shared partial keeps this and preview in sync #}
             {% for card in cards %}
             <article class="card background-{{ card.background }}">
                 {% include "partial-card.njk" %}

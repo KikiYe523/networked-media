@@ -1,17 +1,17 @@
-{# these fields are not visible, but they carry earlier answers to the next page.
-   Leave out the field currently being edited, so it is not sent twice.
-   Hidden inputs are an addition to the class form example. They carry data,
-   but are not private storage: someone can inspect or change their values. #}
+{# hidden inputs carry earlier answers between forms, but anyone can inspect or edit them #}
+{# leave out the section being edited, or the form sends that field twice #}
 {% if step != "type" %}<input type="hidden" name="type" value="{{ draft.type }}">{% endif %}
 {% if step != "holds" %}
 <input type="hidden" name="favorite" value="{{ draft.favorite }}">
 <input type="hidden" name="avoid" value="{{ draft.avoid }}">
+<input type="hidden" name="style" value="{{ draft.style }}">
+<input type="hidden" name="shoes" value="{{ draft.shoes }}">
 {% endif %}
 {% if step != "kit" %}
-<input type="hidden" name="shoes" value="{{ draft.shoes }}">
 <input type="hidden" name="gym" value="{{ draft.gym }}">
+<input type="hidden" name="gymFeel" value="{{ draft.gymFeel }}">
 {% endif %}
 {% if step != "story" %}<input type="hidden" name="story" value="{{ draft.story }}">{% endif %}
 
-{# keep the random background number too, so editing does not pick a new one. #}
+{# keep the background number as well, so editing doesn’t roll a new one #}
 <input type="hidden" name="background" value="{{ draft.background }}">

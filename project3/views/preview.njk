@@ -15,6 +15,7 @@
     <nav>
         <a href="/">Make a Card</a>
         <a href="/community">Community wall</a>
+        <a href="/about">About</a>
     </nav>
 </header>
 
@@ -22,8 +23,7 @@
         <h1>Your card</h1>
 
         <section class="preview-card background-{{ draft.background }}">
-            {# the shared card expects a variable called card. Hre it is still the
-               draft; on the community page it comes from the saved array. #}
+            {# the partial reads card, so give the draft that name here. it isn’t saved yet #}
             {% set card = draft %}
             {% include "partial-card.njk" %}
         </section>
@@ -33,6 +33,7 @@
             <button class="quiet-button" name="destination" value="wall">Edit card</button>
         </form>
 
+        {# editing goes back with the draft. only this publish form sends it to the public array #}
         <form method="POST" action="/send-card">
             {% include "partial-draft.njk" %}
             <p class="note">Your published card will be public.</p>

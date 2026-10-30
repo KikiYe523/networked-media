@@ -1,5 +1,4 @@
 @font-face { font-family: "Bonices"; src: url("/fonts/Bonices.ttf") format("truetype"); }
-
 @font-face { font-family: "Grafipaint"; src: url("/fonts/Grafipaint.ttf") format("truetype"); }
 
 body {
@@ -13,6 +12,8 @@ body {
     line-height: 1.6;
 }
 
+/* the map sits on its own layer so its opacity doesn’t fade the text too.
+   pointer-events lets clicks reach the actual page underneath */
 body::before {
     content: "";
     position: absolute;
@@ -33,39 +34,27 @@ header, main {
 }
 
 main { padding: 36px 0; }
-
 .narrow { max-width: 760px; }
-
-a, a:visited { color: #293d34; }
-
-header {
-    padding: 24px 0;
-    border-bottom: 2px solid #b9bbaa;
-}
-
-nav { margin-top: 18px; }
+a { color: #293d34; }
+header { padding: 24px 0; border-bottom: 2px solid #b9bbaa; }
+nav { margin-top: 18px; padding: 8px 0; }
 
 nav a {
-    display: inline-block;
-    margin: 0 13px;
+    margin: 6px 8px;
+    padding: 8px 24px;
+    border: 2px solid #526258;
+    border-radius: 30px;
+    background: #fffcf5;
     font-size: 30px;
     line-height: 1.5;
+    text-decoration: none;
 }
 
 .wordmark { font-size: 38px; text-decoration: none; }
-
 .intro { padding: 25px 0 40px; }
-
 h1, .wordmark { font-family: "Bonices", Arial, sans-serif; font-weight: normal; }
-
-h1 {
-    font-size: 68px;
-    line-height: 1.1;
-    margin: 20px 0;
-}
-
+h1 { font-size: 68px; line-height: 1.1; margin: 20px 0; }
 h2, .result-title { font-size: 48px; line-height: 1.2; }
-
 .intro h1 { line-height: 1.2; margin: 12px 0 24px; }
 
 .title-city {
@@ -76,7 +65,6 @@ h2, .result-title { font-size: 48px; line-height: 1.2; }
 }
 
 .button, button {
-    display: inline-block;
     padding: 13px 22px;
     background: #e7a6b3;
     border: 1px solid #293d34;
@@ -89,27 +77,20 @@ h2, .result-title { font-size: 48px; line-height: 1.2; }
     cursor: pointer;
 }
 
+/* these share display settings, but their sizes and spacing stay with their own rules */
+nav a, .button, button, .card, .answer input, .result-choice input, .card-details p { display: inline-block; }
 header, .intro, .finish-route, .card-picture { text-align: center; }
 .hold img, .hold small, .result-image, .card-picture img, .result-description { display: block; }
 .quiet-button, .hold { background: transparent; border: 0; }
-
-.quiet-button {
-    padding: 12px 4px;
-    text-decoration: underline;
-}
-
+.quiet-button { padding: 12px 4px; text-decoration: underline; }
 .text-link { margin-left: 20px; }
+.note, .gym-impression { font-size: 18px; }
 
-.note { font-size: 18px; }
-
-/* The wall is the reference for the absolute positions below (class 10).
-   Image sizes come from the files. pointer-events: none lets clicks pass
-   through decorative cats to the hold buttons. */
-
+/* relative on hold-wall makes top/left start from the wall, not the whole page.
+   keep the cats decorative so they can’t block a hold button */
 .home-page { max-width: none; }
-
-
-/*  might change this later*/
+.wall-instructions { max-width: 800px; margin: 0 auto 30px; text-align: center; }
+/* hides horizontal overflow; the fixed wall can still get clipped on a narrow screen */
 .wall-window { overflow: hidden; }
 
 .hold-wall {
@@ -120,33 +101,16 @@ header, .intro, .finish-route, .card-picture { text-align: center; }
 }
 
 .hold-wall form { margin: 0; }
-
-.hold {
-    position: absolute;
-    padding: 0;
-    border-radius: 0;
-}
-
+.hold { position: absolute; padding: 0; border-radius: 0; }
 .hold-one { top: 20px; left: 620px; }
-
 .hold-two { top: 400px; left: 570px; }
-
 .hold-three { top: 550px; left: 310px; }
-
 .hold-four { top: 700px; left: 600px; }
-
 .wall-cat { position: absolute; pointer-events: none; }
-
 .cat-balance { top: 50px; left: 100px; }
-
 .cat-hook { top: 180px; left: 840px; }
-
 .cat-dyno { top: 900px; left: 450px; }
-
 .finish-route { margin: 30px 0 60px; }
-
-/* Trhe general input rule makes fields full width. Radio buttons need
-   width auto here so their circles stay beside the answer text. */
 
 label { display: block; margin-bottom: 20px; }
 
@@ -162,18 +126,11 @@ input, select, textarea {
     font: inherit;
 }
 
-.answer input, .result-choice input {
-    display: inline-block;
-    width: auto;
-    margin-right: 10px;
-}
-
+/* undo full-width inputs for radios so the circle stays next to its answer */
+.answer input, .result-choice input { width: auto; margin-right: 10px; }
 .step-actions, .gym-filter { margin: 30px 0; }
-
 .step-actions button { margin-right: 12px; }
-
 .gym-filter { max-width: 540px; }
-
 .empty-wall { padding: 20px 0; }
 
 .quiz-question {
@@ -184,40 +141,30 @@ input, select, textarea {
 }
 
 .quiz-question legend { font-size: 28px; font-weight: bold; }
-
-.answer {
-    padding: 12px;
-    margin-bottom: 6px;
-    background: #fffcf5;
-}
-
+.answer { padding: 12px; margin-bottom: 6px; background: #fffcf5; }
 .quiz-exit { margin-top: 20px; }
-
 .quiz-error { color: #9d2549; }
-
 .result-description { margin-top: 12px; }
-
 .result-image { margin: 20px auto; }
 
 .card, .preview-card, .result-choice {
     box-sizing: border-box;
-    padding: 25px;
-    margin: 25px 0;
     background: #e5e9c7;
     border: 1px solid #526258;
     overflow-wrap: anywhere;
 }
 
+.result-choice { padding: 25px; margin: 25px 0; }
+
 .card {
-    display: inline-block;
     vertical-align: top;
     margin: 25px 12px;
     font-size: 24px;
     text-align: left;
 }
 
-/* both views use the same 5:7 frame. border-box includes padding and border
-   in these dimensions; otherwise the outside of the card would be larger. */
+/* both cards use 5:7. border-box counts padding and border inside that size.
+   overflow hides spillover, so the form limits still matter here */
 .card, .preview-card {
     width: 560px;
     height: 784px;
@@ -231,41 +178,43 @@ input, select, textarea {
 }
 
 .preview-card { margin: 30px auto; }
-
-.card h2, .preview-card h2 { font-size: 38px; margin: 0 0 10px; text-align: center; }
-
+.card h2, .preview-card h2, .about-type h2 { font-size: 38px; }
+.card h2, .preview-card h2 { margin: 0 0 10px; text-align: center; }
 .card-picture { margin-bottom: 12px; }
-
 .card-picture img { margin: 0 auto; }
 
-/* The picture follows the resized image instead of keeping the old empty
-   space. Details use two columns so more fits inside the fixed 5:7 card. */
+/* let the picture use its own height, then fit details into two small columns */
 .card-details { font-size: 22px; line-height: 1.3; }
 .card-details p {
-    display: inline-block;
     box-sizing: border-box;
     width: 48%;
     padding-right: 12px;
     margin: 6px 0;
     vertical-align: top;
 }
-.card-details blockquote { font-size: 22px; margin-top: 8px; padding-top: 8px; }
-
-blockquote {
-    margin: 20px 0 0;
-    padding-top: 15px;
-    border-top: 1px dashed #526258;
-}
-
+.card-details blockquote { margin: 8px 0 0; padding-top: 8px; border-top: 1px dashed #526258; }
+/* the same pale layer keeps text readable over each hold. only the image changes */
 .background-1 { background-image: linear-gradient(rgba(255, 252, 245, 0.87), rgba(255, 252, 245, 0.87)), url("/images/card-background-1.png"); }
 .background-2 { background-image: linear-gradient(rgba(255, 252, 245, 0.87), rgba(255, 252, 245, 0.87)), url("/images/card-background-2.png"); }
 .background-3 { background-image: linear-gradient(rgba(255, 252, 245, 0.87), rgba(255, 252, 245, 0.87)), url("/images/card-background-3.png"); }
 .background-4 { background-image: linear-gradient(rgba(255, 252, 245, 0.87), rgba(255, 252, 245, 0.87)), url("/images/card-background-4.png"); }
 .background-5 { background-image: linear-gradient(rgba(255, 252, 245, 0.87), rgba(255, 252, 245, 0.87)), url("/images/card-background-5.png"); }
 
-/* Center the whole row, with equal margins on each card. Removing the space
-   between inline-block elements here keeps two cards from unexpectedly wrapping. */
 .community-page { max-width: 1200px; }
+/* inline-block leaves a text-space gap between cards. zero it here,
+   then .card sets the text size back so two cards fit on one row */
 .cards { text-align: center; font-size: 0; }
+.about-page { max-width: 900px; }
 
-.wall-intro { max-width: 800px; margin: 0 auto 30px; text-align: center; }
+/* no fixed height here — these descriptions can grow without clipping */
+.about-type {
+    margin: 35px 0;
+    padding: 25px;
+    border: 2px solid #526258;
+    border-radius: 24px;
+    background: #fffcf5;
+}
+
+.about-type img { display: block; margin: 0 auto 20px; }
+.about-type h2 { margin: 12px 0; }
+nav a:hover, nav a:focus, nav a[aria-current="page"] { background: #e7a6b3; }

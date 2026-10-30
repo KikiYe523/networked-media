@@ -3,20 +3,36 @@
 <link href="/style.css" rel="stylesheet">
 </head><body><main class="narrow">
 <form method="POST" action="/continue">{% include "partial-draft.njk" %}
-{# These three steps share a page because their structure is the same.
-   step chooses which fields to show. Values come back from the draft so
-   returning to a section does not mean typing everything again. #}
+{# these steps share the same form. step decides which fields to show, draft restores the answers #}
 {% if step == "holds" %}
-<h1>Your hold preferences</h1>
+<h1>Your climbing preferences</h1>
 <label>A hold I love<input name="favorite" value="{{ draft.favorite }}" maxlength="80" placeholder="Jugs, crimps, pinches…"></label>
 <label>A hold I avoid<input name="avoid" value="{{ draft.avoid }}" maxlength="80" placeholder="Slopers and I are working on it."></label>
-{% elif step == "kit" %}
-<h1>Shoes + gym</h1><p>Both optional.</p>
+<label>My favorite climbing moves<select name="style"><option value="">Choose a preference / optional</option>
+<option value="Dyno / dynamic moves" {% if draft.style == "Dyno / dynamic moves" %}selected{% endif %}>Dyno / dynamic moves</option>
+<option value="Balance / delicate footwork" {% if draft.style == "Balance / delicate footwork" %}selected{% endif %}>Balance / delicate footwork</option>
+<option value="Heel hooks" {% if draft.style == "Heel hooks" %}selected{% endif %}>Heel hooks</option>
+<option value="Toe hooks" {% if draft.style == "Toe hooks" %}selected{% endif %}>Toe hooks</option>
+<option value="Compression" {% if draft.style == "Compression" %}selected{% endif %}>Compression</option>
+<option value="Static / controlled moves" {% if draft.style == "Static / controlled moves" %}selected{% endif %}>Static / controlled moves</option>
+<option value="Still exploring" {% if draft.style == "Still exploring" %}selected{% endif %}>Still exploring</option>
+</select></label>
 <label>My go-to shoes<input name="shoes" value="{{ draft.shoes }}" maxlength="100" placeholder="Rental shoes count, too."></label>
+{% elif step == "kit" %}
+<h1>Your home gym</h1>
+
 <label>Home gym / optional<select name="gym"><option value="">No home gym / prefer not to share</option>{% include "partial-gym-options.njk" %}</select></label>
+<label>How do the grades feel to you here? / optional<select name="gymFeel"><option value="">Choose your impression</option>
+<option value="Soft" {% if draft.gymFeel == "Soft" %}selected{% endif %}>Soft / easier than I expect</option>
+<option value="About right" {% if draft.gymFeel == "About right" %}selected{% endif %}>About right for me</option>
+<option value="Hard" {% if draft.gymFeel == "Hard" %}selected{% endif %}>Hard / tougher than I expect</option>
+<option value="Not sure" {% if draft.gymFeel == "Not sure" %}selected{% endif %}>Still figuring it out</option>
+</select></label>
 {% else %}
 <h1>Your story</h1>
-<label>What’s one small climbing moment that stayed with you?<textarea name="story" rows="5" maxlength="500" placeholder="A tiny win, a funny fall, or someone who cheered you on…">{{ draft.story }}</textarea></label>
+{% if error %}<p class="quiz-error">{{ error }}</p>{% endif %}
+{# characters, not words. maxlength includes spaces too; the server checks the same 180 limit #}
+<label>What’s one small climbing moment that stayed with you? (Up to 180 characters)<textarea name="story" rows="5" maxlength="180" placeholder="A tiny win, a funny fall, or someone who cheered you on…">{{ draft.story }}</textarea></label>
 
 {% endif %}
 <div class="step-actions">

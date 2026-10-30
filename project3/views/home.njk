@@ -2,49 +2,46 @@
 
 <head>
    <title>Nice to “Climb” You NYC</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="/style.css" rel="stylesheet">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="/style.css" rel="stylesheet">
 
 </head>
 
 <body>
-<header>
-    <nav>
-        <a href="/">Make a Card</a>
-        <a href="/community">Community wall</a>
-    </nav>
-</header>
-<main class="home-page">
+   <header>
+      <nav>
+         <a href="/" aria-current="page">Make a Card</a>
+         <a href="/community">Community wall</a>
+         <a href="/about">About</a>
+      </nav>
+   </header>
+   <main class="home-page">
       <section class="intro">
          <h1>Nice to “Climb” You<span class="title-city">NYC</span></h1>
       </section>
       <section id="wall">
-         <div class="wall-intro">
-            <p>A scrapbook for NYC climbers, beyond the grades.</p>
-            <p>Pick a hold to find your climbing type, share your favorites, or leave a story.
-               Follow the steps to build your card, then preview it and choose whether to publish.</p>
-            <p>No name or account needed. Browse the Community Wall to see what other climbers share.</p>
-         </div>
+         <p class="wall-instructions">Click the holds to build your card: find your climbing cat, add your favorites,
+            and leave a little story. Preview it below, then share it on the wall if you feel like it.</p>
          <div class="wall-window">
+            {# the wall is the position reference for the cats and holds. the image files keep their own sizes #}
             <div class="hold-wall">
                <img class="wall-cat cat-dyno" src="/images/cat_dyno.png" alt="">
-               <form method="POST" action="/continue">{# each hold is a submit button, not just a link. rts name/value sends which
-   section to open, and the hidden fields send the answers already collected. #}
-                  {% include "partial-draft.njk" %}
+               {# using a form here keeps previous answers. a plain link would leave them behind #}
+               <form method="POST" action="/continue">{% include "partial-draft.njk" %}
                   <button class="hold hold-one" aria-label="Climbing quiz" name="destination" value="type"><img
                         src="/images/hold1.png" alt="">{% if draft.type %}<small>✓</small>{% endif %}</button>
                </form>
                <img class="wall-cat cat-balance" src="/images/cat_balance.png" alt="">
                <form method="POST" action="/continue">{% include "partial-draft.njk" %}
-                  <button class="hold hold-two" aria-label="Hold preferences" name="destination" value="holds"><img
+                  <button class="hold hold-two" aria-label="Climbing preferences" name="destination" value="holds"><img
                         src="/images/hold2.png"
-                        alt="">{% if draft.favorite or draft.avoid %}<small>✓</small>{% endif %}</button>
+                        alt="">{% if draft.favorite or draft.avoid or draft.style or draft.shoes %}<small>✓</small>{% endif %}</button>
                </form>
                <img class="wall-cat cat-hook" src="/images/cat_hook.png" alt="">
                <form method="POST" action="/continue">{% include "partial-draft.njk" %}
-                  <button class="hold hold-three" aria-label="Shoes and gym" name="destination" value="kit"><img
+                  <button class="hold hold-three" aria-label="Home gym" name="destination" value="kit"><img
                         src="/images/hold3.png"
-                        alt="">{% if draft.shoes or draft.gym %}<small>✓</small>{% endif %}</button>
+                        alt="">{% if draft.gym or draft.gymFeel %}<small>✓</small>{% endif %}</button>
                </form>
                <form method="POST" action="/continue">{% include "partial-draft.njk" %}
                   <button class="hold hold-four" aria-label="Your story" name="destination" value="story"><img
@@ -52,6 +49,7 @@
                </form>
             </div>
          </div>
+         {# ticks above just mean there is an answer in that section, not that a card was published #}
          <form class="finish-route" method="POST" action="/continue">{% include "partial-draft.njk" %}<button
                name="destination" value="preview">Preview my card</button></form>
       </section>

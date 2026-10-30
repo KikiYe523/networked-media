@@ -1,5 +1,4 @@
-{# I use this in both preview and the community wall so the card stays the same.
-   The chosen personality decides which cat appears. #}
+{# one shared layout for preview and published cards. the type picks the cat image below #}
 {% if card.type %}<h2>{{ card.type }}</h2>{% endif %}
 <div class="card-picture">
 {% if card.type == "The Beta Detective" %}
@@ -12,8 +11,10 @@
     <img src="/images/cat_mat.png" alt="Cats on the mat">
 {% endif %}
 </div>
+{# skipped fields don’t need an empty label on the card #}
 <div class="card-details">
-{% if card.gym %}<p><strong>Home gym</strong><br>{{ card.gym }}</p>{% endif %}
+{% if card.gym %}<p><strong>Home gym</strong><br>{{ card.gym }}{% if card.gymFeel %}<br><span class="gym-impression">Feels {{ card.gymFeel }} to me</span>{% endif %}</p>{% endif %}
+{% if card.style %}<p><strong>Favorite moves</strong><br>{{ card.style }}</p>{% endif %}
 {% if card.shoes %}<p><strong>Shoes</strong><br>{{ card.shoes }}</p>{% endif %}
 {% if card.favorite %}<p><strong>Favorite hold</strong><br>{{ card.favorite }}</p>{% endif %}
 {% if card.avoid %}<p><strong>Least favorite hold</strong><br>{{ card.avoid }}</p>{% endif %}
