@@ -1,0 +1,16 @@
+form{
+    /* fekx displays allow the width.height to be adjustable automatically */
+    display:flex;
+    /* change display to column */
+    flex-direction:column;
+    /* the form takes 3 of the 5 width shares */
+    flex: 3;
+}
+
+.left, .right{
+    /* this compares against all of the other children of the flex container */
+    flex: 1;
+}
+body{
+    display:flex;
+}
