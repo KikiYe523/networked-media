@@ -13,6 +13,5 @@ async function getData() {
 //
 
 console.log(response.json())
-}
 
 getData()
