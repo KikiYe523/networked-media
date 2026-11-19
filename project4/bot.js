@@ -46,13 +46,13 @@ async function runBot() {
     // keep the traits without the heading moral or source from the database
     let traits = animal.text.split('Moral:')[0].split('Read more:')[0];
 
-// entries start with something like "Panther (Panthera) —"
+ // entries start with something like "Panther (Panthera) —"
     // keep only the description after the dash so the name isn't repeated
     if (traits.includes('—')) {
         traits = traits.slice(traits.indexOf('—') + 1);
     }
 
-    // remove extra spaces, keep the first two sentences, and make them lowercase
+    // remove extra spaces, keep the first two sentencesand make them lowercase
     traits = traits.trim().split('. ').slice(0, 2).join('. ').toLowerCase();
 
     // choose one of four classroom activities
@@ -76,10 +76,13 @@ async function runBot() {
     }
 
     // replace the random situation when a trait matches a specific joke
-    // only the first matching condition is used
+    // only the first matching condition is used!!
     if (traits.includes('sleep')) {
         intro = classmate + ' is presenting with ' + name;
         ending = classmate + ' is presenting alone (－_－) zzZ';
+    } else if (traits.includes('dung')) {
+        intro = classmate + ' is in a small group critique with ' + name;
+        ending = '“let’s start with what’s working well” 😭';
     } else if (
         traits.includes('flame') ||
         traits.includes('fire') ||
@@ -94,16 +97,11 @@ async function runBot() {
     ) {
         intro = classmate + ' is coming up with project ideas with ' + name;
         ending = 'they have submitted two completely different proposals 📝📝';
-    } else if (traits.includes('dung')) {
-        intro = classmate + ' is in a small group critique with ' + name;
-        ending = '“let’s start with what’s working well” 😭';
     }
-
-    // calculate how much room is left for traits within 500 characters
-    // the 4 accounts for the two pairs of line breaks
+    // calculate how much room is left for traits within 500 characters so the post dont get too lnnog
     let space = 500 - intro.length - ending.length - 4;
 
-    // shorten only the traits, leaving room for the three dots
+    // shorten only the traits leaving room for extra info
     if (traits.length > space) {
         traits = traits.slice(0, space - 3) + '...';
     }
@@ -112,7 +110,7 @@ async function runBot() {
     await makeStatus(post);
 }
 
-// post immediately when started to check the result, unless it's sleeping
+// post immediately when bot started to check the result
 runBot();
 
 // then post every 12 minutes
